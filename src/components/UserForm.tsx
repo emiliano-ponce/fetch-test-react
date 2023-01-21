@@ -56,11 +56,11 @@ const UserForm = () => {
   }
 
   return (
-    <section className="sm:w-96 mx-4 mt-10 sm:mx-auto">
+    <section className="sm:w-96 mx-4 sm:mt-10 sm:mx-auto overflow-auto">
       <h1 className="text-2xl mb-2 font-bold dark:text-white">
         Please fill out all fields:
       </h1>
-      <div className="p-5 dark:p-6 rounded-xl box-border dark:border-0 border-4 border-fetch-purple  dark:bg-fetch-grayDark">
+      <div className="rounded-xl box-border p-5 dark:p-6 border-4 dark:border-0 border-fetch-purple  dark:bg-fetch-grayDark">
         <Formik
           validateOnMount
           initialValues={{
