@@ -81,11 +81,9 @@ const UserForm = () => {
             const disabled = !isValid || isSubmitting
             return (
               <Form>
-                {fields.map((field, i) => (
+                {fields.map((field) => (
                   <div key={field.name} className="mb-2">
-                    <FormField
-                      field={i === 0 ? { ...field, autoFocus: true } : field}
-                    />
+                    <FormField field={field} />
                     {errors[field.name] && touched[field.name] && (
                       <div className="text-red-500 font-bold text-sm mt-1">
                         {errors[field.name]}

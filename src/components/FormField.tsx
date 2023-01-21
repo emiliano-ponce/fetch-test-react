@@ -7,17 +7,15 @@ import {
 import Input from './Input'
 import Select, { Option } from './Select'
 
-interface FieldBase {
+type FieldBase = {
   label: string
   required?: boolean
   helperText?: string
 }
-interface InputField extends FieldBase, InputHTMLAttributes<HTMLInputElement> {
+type InputField = FieldBase & InputHTMLAttributes<HTMLInputElement> & {
   type: HTMLInputTypeAttribute
 }
-interface SelectField
-  extends FieldBase,
-    SelectHTMLAttributes<HTMLSelectElement> {
+type SelectField = FieldBase & SelectHTMLAttributes<HTMLSelectElement> & {
   type: 'select'
   options: Option[]
 }

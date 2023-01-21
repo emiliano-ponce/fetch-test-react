@@ -20,9 +20,7 @@ export interface UserEntry extends InferType<typeof userSchema> {}
 
 export type UserFieldOptions = { occupations: Option[]; states: Option[] }
 
-type UserField = Field<UserEntry> & {
-  name: keyof UserEntry
-}
+type UserField = Field<UserEntry>
 
 export const getUserFields = (userOptions: UserFieldOptions): UserField[] => [
   {
@@ -30,7 +28,8 @@ export const getUserFields = (userOptions: UserFieldOptions): UserField[] => [
     label: 'Full Name',
     type: 'text',
     required: true,
-    placeholder: 'Edward Cullen'
+    placeholder: 'Edward Cullen',
+    autoFocus: true
   },
   {
     name: 'email',
