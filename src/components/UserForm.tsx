@@ -56,7 +56,7 @@ const UserForm = () => {
   }
 
   return (
-    <section className="sm:w-96 mx-4 sm:mt-10 sm:mx-auto overflow-auto">
+    <section className="sm:w-96 mx-4 sm:mx-auto">
       <h1 className="text-2xl mb-2 font-bold dark:text-white">
         Please fill out all fields:
       </h1>
@@ -81,9 +81,11 @@ const UserForm = () => {
             const disabled = !isValid || isSubmitting
             return (
               <Form>
-                {fields.map((field) => (
+                {fields.map((field, i) => (
                   <div key={field.name} className="mb-2">
-                    <FormField field={field} />
+                    <FormField
+                      field={i === 0 ? { ...field, autoFocus: true } : field}
+                    />
                     {errors[field.name] && touched[field.name] && (
                       <div className="text-red-500 font-bold text-sm mt-1">
                         {errors[field.name]}
