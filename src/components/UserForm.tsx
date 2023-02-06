@@ -45,14 +45,21 @@ const UserForm = () => {
 
   const handleSubmit = async (
     values: UserEntry,
-    setSubmitting: (isSubmitting: boolean) => void
+    helpers: FormikHelpers<UserEntry>
   ) => {
-    await toast.promise(formService.createUser(values), {
-      loading: 'Submitting...',
-      error: 'Failed to create user.',
-      success: 'User created!',
-    })
-    setSubmitting(false)
+    const { setSubmitting, resetForm } = helpers
+    try {
+      await toast.promise(formService.createUser(values), {
+        loading: 'Submitting...',
+        error: 'Failed to create user.',
+        success: 'User created!',
+      })
+      resetForm()
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -71,10 +78,7 @@ const UserForm = () => {
             state: '',
           }}
           validationSchema={userSchema}
-          onSubmit={(
-            values: UserEntry,
-            { setSubmitting }: FormikHelpers<UserEntry>
-          ) => handleSubmit(values, setSubmitting)}
+          onSubmit={handleSubmit}
         >
           {(props) => {
             const { isSubmitting, isValid, errors, touched } = props
